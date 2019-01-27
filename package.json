@@ -1,0 +1,28 @@
+{
+  "name": "instagram-private-api-auth",
+  "version": "1.0.0",
+  "description": "Wrapper for instagram-private-api with Two Factor Authentication (2FA) and simple console interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ini0n/instagram-private-api-auth.git"
+  },
+  "keywords": [
+    "instagram",
+    "api",
+    "2fa",
+    "auth"
+  ],
+  "author": "Oleg Varnov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ini0n/instagram-private-api-auth/issues"
+  },
+  "homepage": "https://github.com/ini0n/instagram-private-api-auth#readme",
+  "dependencies": {
+    "colorista": "^1.0.0"
+  }
+}
