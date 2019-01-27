@@ -40,7 +40,7 @@ module.exports.AuthService = function(Client) {
                 checkpointErrorCounter++
                 if (checkpointErrorCounter > 1) {
                     log.error('Checkpoint endless loop..')
-                    return new Exceptions.CheckpointEndlessLoopError('Checkpoint challange endless loop, try to change ip', error.json)
+                    return new Exceptions.CheckpointEndlessLoopError('Checkpoint challуnge endless loop, try to change ip', error.json)
                 }
                 return await checkpointErrorHandler(error)
             } else if (error.name === 'RequestError' && error.json.two_factor_required) {
@@ -55,26 +55,26 @@ module.exports.AuthService = function(Client) {
             log.info('Client web challenge resolving...')
             let type = ['phone', 'email']
             let typeNumeric = await readCodeFromConsole('Where to send the code?\n1 - phone (only if phone number connected to your account)\n2 - email')
-            let challange = await Client.Web.Challenge.resolveHtml(error, type[typeNumeric - 1])
-            if (challange.type !== null) {
-                if (challange.type != type[typeNumeric - 1]) {
-                    log.warn(`Sorry, now is available only ${challange.type} verification method`)
+            let challenge = await Client.Web.Challenge.resolveHtml(error, type[typeNumeric - 1])
+            if (challenge.type !== null) {
+                if (challenge.type != type[typeNumeric - 1]) {
+                    log.warn(`Sorry, only ${challenge.type} verification method is available now`)
                 }
-                let code = await readCodeFromConsole(challange.type + ' code:')
+                let code = await readCodeFromConsole(challenge.type + ' code:')
                 log.debug(code)
 
-                let challangeResponse = await challange.code(code)
-                log.debug(challangeResponse)
+                let challengeResponse = await challenge.code(code)
+                log.debug(challengeResponse)
 
-                if (challangeResponse === true) {
-                    log.info('Сhallange successfully passed!')
+                if (challengeResponse === true) {
+                    log.info('Сhallenge successfully passed!')
                     session = await createUserSession(username, password, false)
                 }
 
                 return session
             } else {
                 log.error('Challenge type is null!')
-                return new Exceptions.IncorrectChallengeTypeError('Challenge type is incorrect, it must be "phone" or "email"', challange)
+                return new Exceptions.IncorrectChallengeTypeError('Challenge type is incorrect, it must be "phone" or "email"', challenge)
             }
         } catch (err) {
             log.error(err.name)
@@ -107,7 +107,7 @@ module.exports.AuthService = function(Client) {
                                             })
                                             .send()
             
-            log.info('2FA challange successfully passed!')
+            log.info('2FA challenge successfully passed!')
 
             if (twoFactorResponse.logged_in_user) {
                 session = await createUserSession(username, password, false)
