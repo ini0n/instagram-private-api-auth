@@ -3,7 +3,8 @@
 ![](https://img.shields.io/github/license/ini0n/instagram-private-api-auth.svg)
 
 ---
-### Wrapper for [instagram-private-api](https://github.com/dilame/instagram-private-api) that support Two Factor Authentication (2FA) and have simple console interface.
+Wrapper for [instagram-private-api](https://github.com/dilame/instagram-private-api) that support Two Factor Authentication (2FA) and have simple console interface.
+
 ---
 
 ## Installation
@@ -14,11 +15,10 @@ or
 ```
 npm install git+https://git@github.com/ini0n/instagram-private-api-auth.git
 ```
-### [instagram-private-api](https://github.com/dilame/instagram-private-api) must be installed.
 
 ---
 ## Example
-### Get session by credentials and get last user media in profile.
+Get session by credentials and get last user media in profile.
 ```javascript
 const Client = require('instagram-private-api').V1
 const AuthService = require('instagram-private-api-auth').AuthService(Client)
