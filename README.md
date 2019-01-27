@@ -9,10 +9,12 @@ Wrapper for [instagram-private-api](https://github.com/dilame/instagram-private-
 
 ## Installation
 ```
+npm install instagram-private-api
 npm install instagram-private-api-auth
 ```
 or
 ```
+npm install git+https://git@github.com/dilame/instagram-private-api.git
 npm install git+https://git@github.com/ini0n/instagram-private-api-auth.git
 ```
 

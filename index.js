@@ -40,7 +40,7 @@ module.exports.AuthService = function(Client) {
                 checkpointErrorCounter++
                 if (checkpointErrorCounter > 1) {
                     log.error('Checkpoint endless loop..')
-                    return new Exceptions.CheckpointEndlessLoopError('Checkpoint challуnge endless loop, try to change ip', error.json)
+                    return new Exceptions.CheckpointEndlessLoopError('Checkpoint challenge endless loop, try to change ip', error.json)
                 }
                 return await checkpointErrorHandler(error)
             } else if (error.name === 'RequestError' && error.json.two_factor_required) {
@@ -67,7 +67,7 @@ module.exports.AuthService = function(Client) {
                 log.debug(challengeResponse)
 
                 if (challengeResponse === true) {
-                    log.info('Сhallenge successfully passed!')
+                    log.info('Challenge successfully passed!')
                     session = await createUserSession(username, password, false)
                 }
 
