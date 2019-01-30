@@ -34,6 +34,7 @@ async function getLastUserMedia(session, userId) {
 
 async function main() {
     try {
+        // AuthService.getSession(username:string, password:string, proxyUrl?:string)
         const userSession = await AuthService.getSession('username', 'password')
         const account = await userSession.getAccount()
         let lastUserMedia = await getLastUserMedia(userSession, account.params.id)

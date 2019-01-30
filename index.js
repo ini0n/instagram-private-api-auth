@@ -10,12 +10,14 @@ module.exports.AuthService = function(Client) {
     let device = null
     let storage = null
     let session = null
+    let proxyUrl = null
     let checkpointErrorCounter = 0
 
-    async function createUserSession(_username, _password, isFirst = true) {
+    async function createUserSession(_username, _password, isFirst = true, _proxyUrl = null) {
         try {
             username = _username
             password = _password
+            proxyUrl = _proxyUrl
 
             if (isFirst === true) {
                 log.info('Generate device and storage...')
@@ -25,7 +27,7 @@ module.exports.AuthService = function(Client) {
             }
             
             log.info('Creating user session...')
-            session = await Client.Session.create(device, storage, username, password)
+            session = await Client.Session.create(device, storage, username, password, proxyUrl)
 
             return session
         } catch (error) {
@@ -126,8 +128,8 @@ module.exports.AuthService = function(Client) {
     }
 
     return {
-        getSession: async function (_username, _password) {
-            let userSession = await createUserSession(_username, _password)
+        getSession: async function (_username, _password, _proxyUrl = null) {
+            let userSession = await createUserSession(_username, _password, true, _proxyUrl)
 
             if(userSession instanceof Error) {
                 throw userSession
